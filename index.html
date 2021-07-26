@@ -1,0 +1,372 @@
+<html><head>
+    <meta charset="UTF-8">
+    <title>Building Bilingual and Code-Switched Voice Conversion with Limited Training Data Using Embedding Consistency Loss</title>
+  <body>
+    <div>
+      <article>
+      <header> <h2>Building Bilingual and Code-Switched Voice Conversion with Limited Training Data using Embedding Consistency Loss</h2> </header>
+    </article>
+   
+    <p><b>Authors</b>: Yaogen Yang, Haozhe Zhang, Xiaoyi Qin, Shanshan Liang, Huahua Cui, Mingyang Xu, Ming Li</p>
+    <div><b>Abstract:</b> Building cross-lingual voice conversion (VC) systems for multiple speakers and multiple languages has been a challenging task for a 
+long time. This paper describes a parallel non-autoregressive network to achieve bilingual and code-switched voice conversion for multiple speakers when there 
+are only mono-lingual corpora for each language. We achieve cross-lingual VC between Mandarin speech with multiple speakers and English speech with 
+multiple speakers by applying bilingual bottleneck features. To boost voice cloning performance, we use an adversarial speaker classifier with a gradient 
+reversal layer to reduce the source speaker’s information from the output of encoder. Furthermore, in order to improve speaker similarity between 
+reference speech and converted speech, we adopt an embedding consistency loss between the synthesized speech and its natural reference speech in our network. 
+Experimental results show that our proposed method can achieve high quality converted speech with mean opinion score (MOS) around 4. 
+The conversion system performs well in terms of speaker similarity for both in-set speaker conversion and out-set-of one-shot conversion.</div>
+  <p>&nbsp;</p>
+  <hr />
+  <h3>&nbsp;</h3>
+    
+  <h3>The system added embedding consistency loss (ECL) marked as FastVC-ECL, with the multi-speaker bilingual VC system without ECL marked as FastVC.</h3>       
+        
+    
+   <h3>In-set Test</h3>    
+    <table>
+      <thead>
+      <tr></tr>  <tr></tr>  <tr></tr>
+      <tr>
+        <th> source speaker speech </th> <th> target speaker speech</th> <th> FastVC speech </th> <th> FastVC-ECL speech </th>  
+    </thead><tbody>
+    <tr></tr>  <tr></tr><tr></tr>  <tr></tr>
+    <tr>
+      <td colspan="10"><span><b>mono-lingual VC</b></span></td>
+    </tr>
+        
+    <tr>
+      <td colspan="5"><span>text：睡眼惺忪的拿起手机。</td></span>
+    </tr>
+        
+    <tr>
+      <td><audio controls=""><source src="inset_wav/source/same/SSB10010448.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/same/01400006.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/same/embed-SSB10010448.wav.wav--01400006.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/same/embed-SSB10010448.wav.wav--01400006.wav" type="audio/wav"></audio></td>
+
+    </tr>
+         
+     <tr>
+      <td colspan="5"><span>text：睡眼惺忪的拿起手机。</td></span>
+    </tr>
+        
+    <tr>
+      <td><audio controls=""><source src="inset_wav/source/same/SSB10010448.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/same/SSB01220102.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/same/embed-SSB10010448.wav.wav--SSB01220102.wav.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/same/embed-SSB10010448.wav.wav--SSB01220102.wav.wav" type="audio/wav"></audio></td>
+
+    </tr>
+        
+    <tr>
+      <td colspan="5"><span>text：Harry Potter has lost his magic.</td></span>
+    </tr>
+      
+    <tr>
+      <td><audio controls=""><source src="inset_wav/source/same/p238_339.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/same/LJ013-0076.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/same/embed-p238_339.wav--LJ013-0076.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/same/embed-p238_339.wav--LJ013-0076.wav" type="audio/wav"></audio></td>
+
+    </tr>
+   
+    <tr>
+      <td colspan="5"><span>text：Harry Potter has lost his magic.</td></span>
+    </tr>
+           
+     <tr>
+      <td><audio controls=""><source src="inset_wav/source/same/p238_339.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/same/p302_217.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/same/embed-p238_339.wav--p302_217.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/same/embed-p238_339.wav--p302_217.wav" type="audio/wav"></audio></td>
+
+    </tr>
+        
+        
+    <tr>
+      <td colspan="5"><span><b>cross-lingual VC</b></span></td>
+    </tr>
+    
+    
+    
+     <tr>
+      <td colspan="5"><span>text：The actual primary rainbow observed is said to be the effect of super-imposition of a number of bows.</td></span>
+    </tr>
+   <tr>
+      <td><audio controls=""><source src="inset_wav/source/cross/p227_022.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/cross/01200115.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/cross/embed-p227_022.wav--01200115.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/cross/embed-p227_022.wav--01200115.wav" type="audio/wav"></audio></td>
+
+    </tr>
+
+    <tr>
+      <td colspan="5"><span>text：The actual primary rainbow observed is said to be the effect of super-imposition of a number of bows.</td></span>
+    </tr>
+        
+     <tr>
+      <td><audio controls=""><source src="inset_wav/source/cross/p227_022.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/cross/SSB05900147.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/cross/embed-p227_022.wav--SSB05900147.wav.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/cross/embed-p227_022.wav--SSB05900147.wav.wav" type="audio/wav"></audio></td>
+
+    </tr>
+
+     
+    <tr>
+      <td colspan="5"><span>text：于是我决定就来谈谈种族问题。</td></span>
+    </tr>
+
+    <tr>
+      <td><audio controls=""><source src="inset_wav/source/cross/SSB15750354.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/cross/LJ045-0141.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/cross/embed-SSB15750354.wav.wav--LJ045-0141.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/cross/embed-SSB15750354.wav.wav--LJ045-0141.wav" type="audio/wav"></audio></td>
+
+    </tr>  
+    
+    <tr>
+      <td colspan="5"><span>text：于是我决定就来谈谈种族问题。</td></span>
+    </tr>
+
+    <tr>
+      <td><audio controls=""><source src="inset_wav/source/cross/SSB15750354.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/cross/p284_376.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/cross/embed-SSB15750354.wav.wav--p284_376.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/cross/embed-SSB15750354.wav.wav--p284_376.wav" type="audio/wav"></audio></td>
+
+    </tr>     
+        
+     <tr>
+      <td colspan="5"><span><b>code-switch VC</b></span></td>
+    </tr>
+        
+    <tr>
+      <td colspan="5"><span>text：Alter表示轻微的改变，并没有change into另一事物。</td></span>
+    </tr>
+
+    <tr>
+      <td><audio controls=""><source src="inset_wav/source/code switch/MIX200273.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/code switch/00800031.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/code switch/MIX200273--00800031.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/code switch/MIX200273--00800031.wav" type="audio/wav"></audio></td>
+    </tr>  
+     
+    <tr>
+      <td colspan="5"><span>text：Alter表示轻微的改变，并没有change into另一事物。</td></span>
+    </tr>
+     
+      <tr>
+      <td><audio controls=""><source src="inset_wav/source/code switch/MIX200273.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/code switch/SSB00110108.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/code switch/MIX200273--SSB00110108.wav.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/code switch/MIX200273--SSB00110108.wav.wav" type="audio/wav"></audio></td>
+    </tr>  
+    
+        
+  <tr>
+      <td colspan="5"><span>text：而立之年的冯唐获得美国emory大学MBA学位。</td></span>
+    </tr>
+
+    <tr>
+      <td><audio controls=""><source src="inset_wav/source/code switch/MIX203748.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/code switch/LJ006-0213.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/code switch/MIX203748--LJ006-0213.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/code switch/MIX203748--LJ006-0213.wav" type="audio/wav"></audio></td>
+    </tr>  
+    
+        
+    <tr>
+      <td colspan="5"><span>text：而立之年的冯唐获得美国emory大学MBA学位。</td></span>
+    </tr>
+
+     <tr>
+      <td><audio controls=""><source src="inset_wav/source/code switch/MIX203748.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/target/code switch/p232_109.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/no-feedback/code switch/MIX203748--p232_109.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="inset_wav/feedback/code switch/MIX203748--p232_109.wav" type="audio/wav"></audio></td>
+    </tr>  
+  
+     
+    
+    
+  </tbody>
+</table>
+        
+   
+      <h3>Out-set-of One-shot Test</h3>    
+    <table>
+      <thead>
+      <tr></tr>  <tr></tr>  <tr></tr>
+      <tr>
+        <th> source speaker speech </th> <th> target speaker speech</th> <th> FastVC speech </th> <th> FastVC-ECL speech </th>  
+    </thead><tbody>
+    <tr></tr>  <tr></tr><tr></tr>  <tr></tr>
+    <tr>
+      <td colspan="10"><span><b>mono-lingual VC</b></span></td>
+    </tr>
+        
+    <tr>
+      <td colspan="5"><span>text：该男子因犯非法经营罪被判有期徒刑两年九个月。</td></span>
+    </tr>
+        
+    <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/SSB19020348.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/SSB10020222.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/same/embed-SSB19020348.wav.wav--SSB10020222.wav.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/same/embed-SSB19020348.wav.wav--SSB10020222.wav.wav" type="audio/wav"></audio></td>
+
+    </tr>
+         
+    <tr>
+      <td colspan="5"><span>text：该男子因犯非法经营罪被判有期徒刑两年九个月。</td></span>
+    </tr>
+
+    <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/SSB19020348.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/SSB11970293.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/same/embed-SSB19020348.wav.wav--SSB11970293.wav.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/same/embed-SSB19020348.wav.wav--SSB11970293.wav.wav" type="audio/wav"></audio></td>
+
+    </tr>
+
+  <tr>
+      <td colspan="5"><span>text：we also need a small plastic snake and a big toy frog for the kids.</td></span>
+    </tr>
+        
+    <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/p238_004.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/p227_011.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/same/embed-p238_004.wav--p227_011.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/same/embed-p238_004.wav--p227_011.wav" type="audio/wav"></audio></td>
+
+    </tr>
+
+  <tr>
+      <td colspan="5"><span>text：we also need a small plastic snake and a big toy frog for the kids.</td></span>
+    </tr>
+           
+     <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/p238_004.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/p334_222.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/same/embed-p238_004.wav--p334_222.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/same/embed-p238_004.wav--p334_222.wav" type="audio/wav"></audio></td>
+
+    </tr>
+        
+        
+    <tr>
+      <td colspan="5"><span><b>cross-lingual VC</b></span></td>
+    </tr>
+
+<tr>
+      <td colspan="5"><span>text：我内心也向云闲阿伦星爷等弓友表示歉意。</td></span>
+    </tr>
+
+   <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/SSB17280224.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/p262_062.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/cross/embed-SSB17280224.wav.wav--p262_062.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/cross/embed-SSB17280224.wav.wav--p262_062.wav" type="audio/wav"></audio></td>
+
+    </tr>
+
+    <tr>
+      <td colspan="5"><span>text：我内心也向云闲阿伦星爷等弓友表示歉意。</td></span>
+    </tr>
+        
+     <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/SSB17280224.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/p343_264.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/cross/embed-SSB17280224.wav.wav--p343_264.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/cross/embed-SSB17280224.wav.wav--p343_264.wav" type="audio/wav"></audio></td>
+
+    </tr>
+
+    <tr>
+      <td colspan="5"><span>text：it is deeply frustrating.</td></span>
+    </tr>
+     
+    <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/p360_148.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/SSB12150016.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/cross/embed-p360_148.wav--SSB12150016.wav.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/cross/embed-p360_148.wav--SSB12150016.wav.wav" type="audio/wav"></audio></td>
+
+    </tr>  
+    
+    <tr>
+      <td colspan="5"><span>text：it is deeply frustrating.</td></span>
+    </tr>
+
+    <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/p360_148.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/SSB17450101.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/cross/embed-p360_148.wav--SSB17450101.wav.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/cross/embed-p360_148.wav--SSB17450101.wav.wav" type="audio/wav"></audio></td>
+
+    </tr>     
+        
+    <tr>
+      <td colspan="5"><span><b>code-switch VC</b></span></td>
+    </tr>
+        
+   <tr>
+      <td colspan="5"><span>text：Exo的二零一七冬季特别专辑“universe”于今日揭开神秘面纱。</td></span>
+    </tr>
+
+    <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/MIX200012.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/p227_327.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/code-switch/MIX200012--p227_327.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/code-switch/MIX200012--p227_327.wav" type="audio/wav"></audio></td>
+    </tr>  
+     
+    <tr>
+      <td colspan="5"><span>text：Exo的二零一七冬季特别专辑“universe”于今日揭开神秘面纱。</td></span>
+    </tr>
+     
+      <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/MIX200012.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/p262_033.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/code-switch/MIX200012--p262_033.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/code-switch/MIX200012--p262_033.wav" type="audio/wav"></audio></td>
+    </tr>  
+        
+    <tr>
+      <td colspan="5"><span>text：二零一七夏日迷你专辑“the red summer”。</td></span>
+    </tr>
+        
+    <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/MIX200230.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/SSB11970042.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/code-switch/MIX200230--SSB11970042.wav.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/code-switch/MIX200230--SSB11970042.wav.wav" type="audio/wav"></audio></td>
+    </tr>  
+     
+        
+    <tr>
+      <td colspan="5"><span>text：二零一七夏日迷你专辑“the red summer”。</td></span>
+    </tr>
+
+    <tr>
+      <td><audio controls=""><source src="oneshot_wav/source/MIX200230.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/target/SSB13650104.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/no-feedback/code-switch/MIX200230--SSB13650104.wav.wav" type="audio/wav"></audio></td>
+      <td><audio controls=""><source src="oneshot_wav/feedback/code-switch/MIX200230--SSB13650104.wav.wav" type="audio/wav"></audio></td>
+    </tr>  
+    
+  
+     
+    
+    
+  </tbody>
+</table>
+        
+  
+        
+        
+</div>
+
+</body></html>
