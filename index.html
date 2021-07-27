@@ -4,18 +4,17 @@
   <body>
     <div>
       <article>
-      <header> <h2>Building Bilingual and Code-Switched Voice Conversion with Limited Training Data using Embedding Consistency Loss</h2> </header>
+      <header> <h2>Enhancement of Electrolaryngeal Speech based Speech-to-Speech Conversion using Bottleneck Feature</h2> </header>
     </article>
    
-    <p><b>Authors</b>: Yaogen Yang, Haozhe Zhang, Xiaoyi Qin, Shanshan Liang, Huahua Cui, Mingyang Xu, Ming Li</p>
-    <div><b>Abstract:</b> Building cross-lingual voice conversion (VC) systems for multiple speakers and multiple languages has been a challenging task for a 
-long time. This paper describes a parallel non-autoregressive network to achieve bilingual and code-switched voice conversion for multiple speakers when there 
-are only mono-lingual corpora for each language. We achieve cross-lingual VC between Mandarin speech with multiple speakers and English speech with 
-multiple speakers by applying bilingual bottleneck features. To boost voice cloning performance, we use an adversarial speaker classifier with a gradient 
-reversal layer to reduce the source speaker’s information from the output of encoder. Furthermore, in order to improve speaker similarity between 
-reference speech and converted speech, we adopt an embedding consistency loss between the synthesized speech and its natural reference speech in our network. 
-Experimental results show that our proposed method can achieve high quality converted speech with mean opinion score (MOS) around 4. 
-The conversion system performs well in terms of speaker similarity for both in-set speaker conversion and out-set-of one-shot conversion.</div>
+    <p><b>Authors</b>: Yaogen Yang, Haozhe Zhang, Zexin Cai, Yao Shi, Ming Li</p>
+    <div><b>Abstract:</b> Electrolarynx (EL) is a medical device about the size of a small electric razor used to produce clearer speech by those people who have lost their voice. 
+        However, the EL speech sounds very unnatural and unintelligible due to the mechanical excitation and its monotonous pitch. To address these issues, 
+        we proposed an end-to-end voice conversion method for EL speech enhancement in Mandarin. A speaker-independent automatic speech recognition (ASR) model is used to extract bottleneck features. 
+        In the training stage, the bottleneck feature of EL speech is mapped by a parallel non-autoregressive model to the one of the normal speech. 
+        Then another model maps normal speech's bottleneck directly to normal speech Mel-spectrogram. In the test stage, the predicted bottleneck from EL speech is fed to the model to produce normal Mel-spectrogram. 
+        A MelGAN-based vocoder network is adopted to convert the Mel-spectrogram into time-domain waveform. Experimental results show that the proposed method achieves higher intelligible and mean opinion score(MOS), 
+        and it generates state-of-the-art results.</div>
   <p>&nbsp;</p>
   <hr />
   <h3>&nbsp;</h3>
